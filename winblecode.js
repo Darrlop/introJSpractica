@@ -29,12 +29,12 @@ function createMatch(jug1, jug2){
     else if (((puntosRonda[0] === 5) || (puntosRonda[0] === 4 && puntosRonda[1] < 3))){
       puntosRonda[0] = 0;
       puntosRonda[1] = 0;
-      return "La ronda es para el Jugador A";
+      return "-- La ronda es para el Jugador A --";
     } // win A
     else if ((puntosRonda[1] === 5) || (puntosRonda[0] < 3 && puntosRonda[1] === 4)){
       puntosRonda[0] = 0;
       puntosRonda[1] = 0;
-      return "La ronda es para el Jugador B";
+      return "-- La ronda es para el Jugador B --";
     } // win B 
     else {
       finalRonda = false;
@@ -87,7 +87,7 @@ function createMatch(jug1, jug2){
   const pointWonBy = (jugNum) => {
     // verifico que no se intente añadir más puntos una vez finalizado el partido
     if (finPartido === true){ 
-      throw new Error("Partido finalizado");
+      throw new Error("Atención: no es posible añadir puntos a un partido finalizado");
     } else {
       let ind = jugNum - 1;
       puntosRonda[ind]++;

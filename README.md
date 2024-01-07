@@ -1,1 +1,1 @@
-Repositorio para la práctica de introducción de JS de Keepcoding
+Repositorio para la práctica de introducción a JS de Keepcoding

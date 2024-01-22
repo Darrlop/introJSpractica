@@ -11,8 +11,8 @@ function createMatch(jug1, jug2){
   let finalRonda = false;
 
   const partido = [
-    {jugador: jug1, juegos: 0, rondas: 2},
-    {jugador: jug2, juegos: 0, rondas: 2}
+    {jugador: jug1, juegos: 0, rondas: 0},
+    {jugador: jug2, juegos: 0, rondas: 0}
   ];
 
 
@@ -54,10 +54,14 @@ function createMatch(jug1, jug2){
     // Check rondas
     if (((puntosRonda[0] === 5) || (puntosRonda[0] === 4 && puntosRonda[1] < 3))){
       partido[0].rondas++;
+      puntosRonda[0] = 0;
+      puntosRonda[1] = 0;
       finalRonda = true;
     } 
     else if ((puntosRonda[1] === 5) || (puntosRonda[0] < 3 && puntosRonda[1] === 4)){
       partido[1].rondas++;
+      puntosRonda[0] = 0;
+      puntosRonda[1] = 0;
       finalRonda = true;
     }
 
@@ -155,94 +159,96 @@ function createMatch(jug1, jug2){
 
 
 
-/// PRUEBAS
-const game = createMatch("Jugador A", "Jugador B");
 
+
+
+
+// ---------------------- TEST
+
+// Ejemplo de software
+const game = createMatch('Alberto C', 'David J');
+// Cuando puntua el 1º judagor se registra de este modo
 game.pointWonBy(1);
-console.log(game.getCurrentRoundScore());
+// Cuando puntua el 2º judagor se registra de este modo
 game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
+// Quiero poder ver como va la ronda actual en todo momento
+console.log(game.getCurrentRoundScore()); // Alberto C 15-15 David J
 game.pointWonBy(1);
-console.log(game.getCurrentRoundScore());
+console.log(game.getCurrentRoundScore()); // Alberto C 30-15 David J
+game.pointWonBy(2);
+console.log(game.getCurrentRoundScore()); // Alberto C 30-30 David J
 game.pointWonBy(1);
-console.log(game.getCurrentRoundScore());
+console.log(game.getCurrentRoundScore()); // Alberto C 40-30 David J
 game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
+console.log(game.getCurrentRoundScore()); // Deuce
+// jugador 1 toma ventaja
 game.pointWonBy(1);
-console.log(game.getCurrentRoundScore());
+console.log(game.getCurrentRoundScore()); // Advantage Alberto C
+// jugador 2 empata
 game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
+console.log(game.getCurrentRoundScore()); // Deuce
+// jugador 2 toma ventaja
+game.pointWonBy(2);
 
+console.log(game.getCurrentRoundScore()); // Advantage David J
+// Con este punto jugador 2 gana la ronda
 game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-console.log(game.getRoundsScore());
+// Quiero poder ver como va la puntuación de un juego
 
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-console.log(game.getRoundsScore());
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-
-console.log(game.getRoundsScore());
-console.log(game.getMatchScore());
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-
-console.log(game.getRoundsScore());
-console.log(game.getMatchScore());
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-
-console.log(game.getRoundsScore());
-console.log(game.getMatchScore());
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
-
-console.log(game.getRoundsScore());
-console.log(game.getMatchScore());
-
-console.log(`--- El ganador del Playoff es : ${game.getWinner()} ---`);
-
-game.pointWonBy(2);
-console.log(game.getCurrentRoundScore());
+console.log(game.getRoundsScore()); // Alberto C 0 David J 1
+// La primera ronda es para David le quedan 3 para ganar un jueg
 
 
+
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+
+
+
+// David gana 2º ronda
+
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+
+// David gana 3º ronda
+
+game.pointWonBy(2); // Player 2 wins the game
+game.pointWonBy(2); // Player 2 wins the game
+game.pointWonBy(2); // Player 2 wins the game
+game.pointWonBy(2); // Player 2 wins the game
+
+// // David gana 4º ronda
+
+// // Primer juego ganado
+ console.log(game.getMatchScore()); // Alberto C 0 David J 1
+
+
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+// gana ronda 1º
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+// gana ronda 2º
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+// gana ronda 3º
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+game.pointWonBy(2); // Jugador 2 anota un punto
+// gana ronda 4º
+
+// Método para ver los juegos de cada jugador
+console.log(game.getMatchScore()); // Alberto C 0\nDavid J 2
+// método para ver el ganador. Si aún no hay ganador retornar null
+console.log(game.getWinner()); // Output: "David J"

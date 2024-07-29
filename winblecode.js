@@ -2,7 +2,7 @@ console.log("WINBLECODE");
 
 function createMatch(jug1, jug2){
 
-  let jugadoresRonda = [jug1, jug2]; // Datos de los jugadores en curso
+  let jugadoresRonda = [jug1, jug2];  // Datos de los jugadores en curso
   let puntosRonda = [0, 0];  // Contador interno de puntos. Posibles valores y su relación con marcador "humano": 
                 //  0,  1,  2,  3,  4,  5
   const marcador = [0, 15, 30, 40, "A", "W"]; // A y W para uso interno. No visible para usuario
@@ -156,9 +156,6 @@ function createMatch(jug1, jug2){
     getWinner: getWinner
   };
 }
-
-
-
 
 
 
